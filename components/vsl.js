@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import VideoPlayer from './videoPlayer';
 
 function VSL() {
   const [text, setText] = useState('');
-  // const [background, setBackground] = useState('office'); // Default background
-  const [font, setFont] = useState('arial');
-  const [videoUrl, setVideoUrl] = useState('');
+  // const [videoUrl, setVideoUrl] = useState('');
 
+  const videoUrl = 'http://localhost:5000/VSL/voiceover_output.mp4';
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
@@ -20,10 +19,9 @@ function VSL() {
         },
         body: JSON.stringify({ text }),
       });
-
+  
       if (response.status === 200) {
-        const data = response.data;
-        setVideoUrl(data.video_file);
+        console.log('Video generation request successful.');
       } else {
         console.error('Failed to generate video');
       }
@@ -31,44 +29,33 @@ function VSL() {
       console.error('Error:', error);
     }
   };
-  // const handleBackgroundChange = (e) => {
-  //   setBackground(e.target.value);
-  // };
-  // const handleFontChange = (e) => {
-  //   setFont(e.target.value);
-  // };
+  
 
   return (
-    <div>
+   <div className="flex justify-center items-center h-screen">
+    <div className="w-full max-w-xl text-center">
+    <h1 className="text-4xl font-bold mb-4">Generate your Own VSL</h1>
       <textarea
+        className="border rounded-md p-2 w-full"
         rows="4"
         cols="50"
         value={text}
         onChange={handleTextChange}
-        placeholder="Enter your text here..."
+        placeholder="Enter your VSL script here..."
       />
-      {/* <label>
-        Select Background:
-        <select value={background} onChange={handleBackgroundChange}>
-          <option value="office">Office</option>
-          <option value="field">Field</option>
-        </select>
-      </label> */}
-      {/* <label>
-        Select Font:
-        <select value={font} onChange={handleFontChange}>
-          <option value="arial">Arial</option>
-          <option value="times_new_roman">Times New Roman</option>
-        </select>
-      </label> */}
-      <button onClick={generateVideo}>Generate Video</button>
-      {videoUrl && (
-        <video width="320" height="240" controls>
-          <source src={videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={generateVideo}
+      >
+        Generate Video
+      </button>
+      {/* {videoUrl ? (
+        <VideoPlayer />
+      ) : (
+        <div className="text-red-600 font-bold mt-8">No video found.</div>
+      )} */}
     </div>
+  </div>
   );
 }
 

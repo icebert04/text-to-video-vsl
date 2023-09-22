@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import moviepy.editor as mp
 import os
 from flask_cors import CORS
@@ -30,8 +30,8 @@ def generate_video():
         tts.save('voiceover.mp3')
         print("Voiceover generated")
 
-        # Split the text into sentences using periods ('.') and commas (',')
-        sentences = re.split(r'[.,]', text)
+        # Split the text into sentences using commas (',') and punctuation
+        sentences = re.split(r'[.,!?]', text)
 
         # Create a list to store TextClips for each sentence
         sentence_clips = []
@@ -119,11 +119,12 @@ def generate_video():
         print("Temporary files cleaned up")
 
         # Return the generated video file path
-        return jsonify({'video_file': video_output_path})
+        return send_from_directory(output_directory, 'voiceover_output.mp4')
 
     except Exception as e:
-        print(f'Error: {e}')
-        return jsonify({'error': str(e)}), 500
+        error_message = f'Error: {e}'
+        print(error_message)  # Log the specific error message
+        return jsonify({'error': error_message}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
