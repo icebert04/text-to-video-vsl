@@ -1,34 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Text-to-Video VSL Generator
+The Text-to-Video VSL Generator is a Python application that allows users to input text and generate a video with a voiceover reading the text while displaying it in the video. It's a versatile tool that can be used for various purposes, including creating Video Sales Letters (VSLs) and educational content.
 
-## Getting Started
+## Table of Contents
+* Installation
+* Usage
+* Configuration Options
+* Examples
+* Contributing
+* License
+* Acknowledgments
+* Contact Information
+-----
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+To set up the project locally, follow these steps:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository to your local machine:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+`git clone https://github.com/yourusername/text-to-video-VSL.git`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+2. Change to the project directory:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+`cd text-to-video-VSL Install the required Python packages using pip:`
 
-## Learn More
+`pip install -r requirements.txt`
+3. Make sure you have the '**ImageMagick**' binary installed. You can download it from '[**ImageMagick**]('https://imagemagick.org/script/download.php')'.
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the application:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`python app.py`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Now your Text-to-Video VSL Generator is up and running locally.
+___
+## Usage
+To use the Text-to-Video VSL Generator, make a POST request to the /generate-video endpoint with the following parameters:
 
-## Deploy on Vercel
+* '**text:**' The input text you want to include in the video.
+* '**voice (optional):**' The voice language for the voiceover (default is English).
+* '**font_color (optional):**' The font color for the text (default is white).
+* '**background_color (optional):**' The background color of the text (default is black).
+* '**background_opacity (optional):**' The background opacity (default is 1.0, no transparency).
+* '**font_size (optional):**' The font size (default is 70).
+* '**text_speed (optional):**' The text speed (default is 0.5).
+* '**background_image_path (optional):**' Path to a background image (optional).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The generator will create a video with the specified text, voiceover, and visual settings.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Configuration Options
+You can customize the appearance and behavior of the generated videos by adjusting the following configuration options:
+
+* '**voice:**' Specify the voice language for the voiceover.
+* '**font_color:**' Choose the font color for the text.
+* '**background_color:**' Set the background color for the text.
+* '**background_opacity:**' Adjust the background opacity (0.0 for fully transparent, 1.0 for opaque).
+* '**font_size:**' Change the font size.
+* '**text_speed:**' Adjust the speed at which the text is displayed.
+* '**background_image_path:**' Add a background image to the video.
+
+## Examples
+Here are some usage examples of the Text-to-Video VSL Generator:
+
+Basic Usage: Generate a video with default settings:
+
+`{
+    "text": "This is a basic example of the Text-to-Video VSL Generator."
+}`
+Customized Appearance: Customize font color and background color:
+
+`{
+    "text": "This video has a custom font and background color.",
+    "font_color": "blue",
+    "background_color": "yellow"
+}`
+Background Image: Add a background image to the video:
+
+`{
+    "text": "This video has a custom background image.",
+    "background_image_path": "path/to/background/image.jpg"
+}`
+## Contributing
+If you would like to contribute to this project, please follow these guidelines:
+
+Fork the repository on GitHub.
+Create a new branch for your feature or bug fix.
+Commit your changes with clear and concise messages.
+Push your branch to your fork and submit a pull request to the main repository.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+_____
+## Frontend
+* Next.js
+* Axios
+* React
+
+## Backend
+* Python
+* Acknowledgments
+* MoviePy
+* gTTS (Google Text-to-Speech)
+* FFMPEG
+
+----
+## Contact Information
+If you have any questions or suggestions, feel free to contact me
